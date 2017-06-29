@@ -17,6 +17,9 @@ module Rails
             ActiveRecord::Base.establish_connection if defined?(ActiveRecord::Base)
           end
 
+	  ::Rake::TaskManager.record_task_metadata = true # must call before Rake.application.init
+          ::Rake.application.options.show_tasks = :tasks
+
           ::Rake.application = ::Rake::Application.new
           ::Rake.application.init
           ::Rake.application.load_rakefile
